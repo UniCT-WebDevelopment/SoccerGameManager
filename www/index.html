@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crea Partita</title>
+        <!-- Link al file CSS esterno -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/style.css">
+    </head>
+    <body>
+        <!-- Schermata di Autenticazione -->
+        <div class="background-inter" id="container-register">
+            <div id="auth-form">
+                <h1>Autenticazione</h1>
+                <form id="login-form">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <div class="button-cont">
+                        <button type="button" id="register-button">Registrati</button>
+                        <button type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div id="register-form" style="display: none;">
+                <h1>Registrazione</h1>
+                <form>
+                    <input type="text" id="new-username" placeholder="Username" required>
+                    <input type="password" id="new-password" placeholder="Password" required>
+                    <div class="button-cont">
+                        <button type="submit">Registrati</button>
+                        <button type="button" id="back-to-login">Indietro</button>
+                    </div>
+                </form>  
+            </div>
+        </div>
+
+        <!-- Schermata delle Partite -->
+        <div class="profile-section menu" id="menu_elem">
+            <p id="act-username"></p>
+            <nav id="menu_elements" style="display: none;">
+                <ul>
+                    <li class="menu-list" onclick="showAvailbleMatch()">
+                        <span>Partite Disponibili</span>
+                    </li>
+                    <li class="menu-list" onclick="showCreateMatch()" id="create-match">
+                        <span>Crea Partita</span>
+                    </li>
+                </ul>
+            </nav>
+            <button id="logout-button" style="display: none;">Logout</button>
+            <button id="login-button" style="display: none;" onclick="showAuthForm();">Login</button>
+        </div>
+        
+        <div id="match-form" style="display:none;">
+            <div id="container-match-form">
+                <h1>Crea Partita</h1>
+                <form id="create-match-form">
+                    <input type="text" id="location" placeholder="Luogo" required>
+                    <input type="date" id="date" required>
+                    <input type="time" id="time" required>
+                    <select id="mode">
+                        <option value="5">Calcio a 5</option>
+                        <option value="7">Calcio a 7</option>
+                        <option value="11">Calcio a 11</option>
+                    </select>
+                    <button type="submit">Crea Partita</button>
+                </form>
+            </div>
+            <div id="message-container" style="display: none; padding: 10px; margin-top: 10px;"></div>
+            <h1 id="match-avaible">Partite Disponibili</h1>
+            <div id="matches"></div>
+        </div>
+
+        <!-- Schermata del Campo -->
+        <div id="game-screen" style="display:none;">
+            <h1>Formazione</h1>
+            <div id="field">
+                <div id="mid-line"></div>
+                <div id="center-circle"></div>
+                <div id="center-dot"></div>
+                <div id="left-penalty-area" class="penalty-area">
+                    <div class="penalty-spot" id="left-penalty-spot"></div>
+                </div>
+                <div id="right-penalty-area" class="penalty-area">
+                    <div class="penalty-spot" id="right-penalty-spot"></div>
+                </div>
+                <div id="left-goal" class="goal"></div>
+                <div id="right-goal" class="goal"></div>
+                <div id="left-corner-kick" class="corner-kick"></div>
+                <div id="right-corner-kick" class="corner-kick"></div>
+                <div id="top-left-corner-kick" class="corner-kick"></div>
+                <div id="top-right-corner-kick" class="corner-kick"></div>
+            </div>
+            <div class="chats-partecipants__cont">
+                <div class="cont-data__match">
+                    <h2>Partecipanti:</h2>
+                    <ul id="participants-list"></ul>
+                    <div id="button-edit__cont">
+                        <div id="bottoni_edit">
+                        </div>
+                    </div>
+                </div>
+                <div class="cont-data__match">
+                    <h2>Chat:</h2>
+                    <div id="chat-box" style="border: 1px solid #ccc; height: 200px; overflow-y: auto; padding: 10px;"></div>
+                    <input id="chat-input" type="text" placeholder="Scrivi un messaggio..." />
+                    <button id="send-chat" style="margin-top:10px;">Invia</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <!-- Link al file JavaScript esterno -->
+        <script src="assets/script.js"></script>
+    </body>
+</html>
